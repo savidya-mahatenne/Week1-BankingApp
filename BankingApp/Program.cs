@@ -15,6 +15,7 @@ void BuildBankingApp()
     // Note that an amount is not assigned to the variable
     int choice;
     double depositAmount;
+    double withdrawAmount;
     double accountBalance = 1000.00;
 
     //  Display the main screen
@@ -40,23 +41,61 @@ void BuildBankingApp()
         {
             // Deposit or withdraw funds
             Console.WriteLine("You have chosen to deposit or withdraw funds");
-            Console.WriteLine("How much do you want to deposit?");
-            Console.WriteLine("Enter amount including pence using a decimal point");
+            Console.WriteLine("Please choose an option");
+            Console.WriteLine("=======================");
+            Console.WriteLine("1 - Deposit funds");
+            Console.WriteLine("2 - Withdraw funds");
 
-            // Typically a currency value is input as a decimal value
-            // so the "double" type is required to store the
-            // deposit amount.
+            choice = Convert.ToInt32(Console.ReadLine());
 
-            depositAmount = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine($"Your original account balance was {accountBalance}");
+            if (choice == 1)
+            {
+                // Deposit funds
+                Console.WriteLine("How much do you want to deposit?");
+                Console.WriteLine("Enter amount including pence using a decimal point");
 
-            // This line of code is interpreted as
-            // account balance = account balance + deposit amount
-            // This is an example of an assignment operator
-            accountBalance += depositAmount;
-            Console.WriteLine($"Your new account balance is {accountBalance}");
+                // Typically a currency value is input as a decimal value
+                // so the "double" type is required to store the
+                // deposit amount.
+
+                depositAmount = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine($"Your original account balance was {accountBalance}");
+
+                // This line of code is interpreted as
+                // account balance = account balance + deposit amount
+                // This is an example of an assignment operator
+                accountBalance += depositAmount;
+                Console.WriteLine($"Your new account balance is {accountBalance}");
+            }
+            if (choice == 2)
+            {
+                // Withdraw funds
+                Console.WriteLine("How much do you want to withdraw?");
+                Console.WriteLine("Enter amount including pence using a decimal point");
+
+                withdrawAmount = Convert.ToDouble(Console.ReadLine());
+
+                // check if the withdraw amount is less than the account balance
+                if (withdrawAmount < accountBalance)
+                {
+                    Console.WriteLine($"Your original account balance was {accountBalance}");
+                    accountBalance -= withdrawAmount;
+                    Console.WriteLine($"Your new account balance is {accountBalance}");
+                }
+                else
+                {
+                    Console.WriteLine("You do not have sufficient funds to withdraw this amount");
+                    Console.WriteLine($"Your current account balance is {accountBalance}");
+                }
+            }
+            else
+            {
+                // Invalid menu choice
+                Console.WriteLine("Invalid choice, please choose 1 or 2");
+            }
         }
-        if (choice == 2)
+        // if (choice == 2)
+        else
         {
             // View current account information
             Console.WriteLine("You have chosen to view current account information");
